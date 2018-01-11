@@ -34,7 +34,7 @@
 		    <div class="menu">
 		    	@if (Auth::check())
        			@if (auth()->user()->isAccountingstaff())
-		    		<!-- <a href="{{ url('/report/disbursment') }}" class="item">Disbursement Report</a> -->
+		    		<a  class="item">Disbursement Report</a> 
 		    	@endif
                 @endif		    	
 		    </div>
