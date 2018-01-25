@@ -57,3 +57,5 @@ Route::group(['middleware' => 'roles','roles' => ['Admin']], function() {
         'as' => 'signup'
     ]);
 });
+
+ Route::resource('document', 'DocumentController');
