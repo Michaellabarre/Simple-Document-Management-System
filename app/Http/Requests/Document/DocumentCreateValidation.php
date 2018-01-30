@@ -26,19 +26,15 @@ class DocumentCreateValidation extends FormRequest
         $this->sanitize();
         return [
             'doc_date'  => 'required',
-            'subject'  => 'required'
+            'subject'  => 'required',
+            'import_file'  =>'mimes:pdf'
         ];
     }
 
     public function sanitize()
     {
         $input = $this->all();
-
-
-
         $input['subject'] = strip_tags($input['subject']);
-
-
         $this->replace($input);     
     }
 }

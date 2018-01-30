@@ -9,6 +9,8 @@
     <link  href="{{ asset('/theme/semantic.css')}}" rel="stylesheet">
     <link  href="{{ asset('/theme/main.css')}}" rel="stylesheet">
     <link  href="{{ asset('/theme/pace.css')}}" rel="stylesheet">
+    <script   src="{{ asset('/theme/jquery-2.js')}}"></script>
+        <script   src="{{ asset('/theme/semantic.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/js/vue.js')}}"></script>
 </head>
 <body class="  pace-done">
@@ -493,10 +495,10 @@
             </div>
     <!--jquery-->
     @yield('scripts')
-    <script   src="{{ asset('/theme/jquery-2.js')}}"></script>
+
     <!--jquery-->
     <!--semantic-->
-    <script   src="{{ asset('/theme/semantic.js')}}"></script>
+
     <!--semantic-->
     <script   src="{{ asset('/theme/js.js')}}"></script>
     <script   src="{{ asset('/theme/jquery.js')}}"></script>

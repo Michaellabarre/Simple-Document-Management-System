@@ -9,6 +9,7 @@ use App\Http\Repositories\DocumentRepository;
 use Validator;
 use Request as Req;
 use App\Http\Requests\Document\DocumentCreateValidation;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
@@ -48,7 +49,16 @@ class DocumentController extends Controller
     }
 
     public function show($id)
-    {     
+    {
+        // $filecount = count($files) ;
+        // echo (string)$filecount;
+        $directory  ='itd/'.$this->model->id.'/'.$id;
+        $files = Storage::allFiles($directory);
+        // foreach ($files as $file)
+        // {
+        //    echo (string)$file, "\n";
+        // }     
+
         return view('document.edit');
     }
 

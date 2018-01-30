@@ -9,6 +9,8 @@
     <link  href="<?php echo e(asset('/theme/semantic.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('/theme/main.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('/theme/pace.css')); ?>" rel="stylesheet">
+    <script   src="<?php echo e(asset('/theme/jquery-2.js')); ?>"></script>
+        <script   src="<?php echo e(asset('/theme/semantic.js')); ?>"></script>
     <script type="text/javascript" src="<?php echo e(asset('/js/vue.js')); ?>"></script>
 </head>
 <body class="  pace-done">
@@ -493,10 +495,10 @@
             </div>
     <!--jquery-->
     <?php echo $__env->yieldContent('scripts'); ?>
-    <script   src="<?php echo e(asset('/theme/jquery-2.js')); ?>"></script>
+
     <!--jquery-->
     <!--semantic-->
-    <script   src="<?php echo e(asset('/theme/semantic.js')); ?>"></script>
+
     <!--semantic-->
     <script   src="<?php echo e(asset('/theme/js.js')); ?>"></script>
     <script   src="<?php echo e(asset('/theme/jquery.js')); ?>"></script>
