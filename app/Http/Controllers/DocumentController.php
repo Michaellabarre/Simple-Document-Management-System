@@ -3,21 +3,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Item;
 use DB;
-use App\Deposit;
+use App\Document;
 use App\Payrolltype;
-use App\Http\Repositories\DepositeRepository;
+use App\Http\Repositories\DocumentRepository;
 use Validator;
 use Request as Req;
+use App\Http\Requests\Document\DocumentCreateValidation;
 
 class DocumentController extends Controller
 {
     protected $model;
-    protected $DepositeRepository;
+    protected $DocumentRepository;
 
-    public function __construct(DepositeRepository $DepositeRepository,Deposit $model)
+    public function __construct(DocumentRepository $DocumentRepository,Document $model)
     {
         $this->model = $model;
-        $this->DepositeRepository = $DepositeRepository;
+        $this->DocumentRepository = $DocumentRepository;
     }
 
     public function index()
@@ -30,21 +31,9 @@ class DocumentController extends Controller
         return view('document.create');
     }
 
-    public function store(Request $request)
+    public function store(DocumentCreateValidation $request)
     {
-
-        $validator = Validator::make(Req::all(), [
-            'deposit_number'  => 'required',
-            'deposit_date'  => 'required',
-        ]);
-
-        if ($validator->fails())
-        {
-            $Payrolltypes = Payrolltype::select('payrolltype', 'id')->get();
-            return view('deposit.create', compact('data','Payrolltypes'))->withErrors($validator);
-        }
-
-        return $this->DepositeRepository->CreateDeposit($request);
+        return $this->DocumentRepository->CreateDocument($request);
     }
 
     public function update(Request $request, $id)

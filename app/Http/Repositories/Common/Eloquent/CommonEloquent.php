@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Repositories\Common\Eloquent;
-
 use Illuminate\Database\Eloquent\Model;
 class CommonEloquent
 {

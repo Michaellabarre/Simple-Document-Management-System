@@ -1,5 +1,5 @@
 <!--sidebar-->
-<div class="ui sidebar vertical left menu overlay  borderless visible sidemenu inverted  blue" style="transition-duration: 0.1s; overflow: hidden; cursor: grab;" data-color="grey">
+<div class="ui sidebar vertical left menu overlay  borderless visible sidemenu inverted  blue" style="transition-duration: 0.1s; overflow: hidden; " data-color="grey">
         <a class="item logo" href="/">
             <img src="<?php echo e(asset('/theme/logo.png')); ?>" alt="stagblogo">
             <img src="<?php echo e(asset('/theme/thumblogo.png')); ?>"  alt="stagblogo" class="displaynone">
@@ -56,6 +56,10 @@
               <img src="<?php echo e(asset('/theme/icon-users.png')); ?>" >
               <span >Manage Users</span>
             </a>
+            <a class="item" href="/managelibraries/user">
+              <img src="<?php echo e(asset('/theme/icon-bureau.png')); ?>" >
+              <span >Manage Bureaus and Services</span>
+            </a>            
         </div>
     </div>
 
@@ -80,7 +84,6 @@
               Documents Forwarded Today
             </a>
             <a class="item" href="">
-              <img src="<?php echo e(asset('/theme/icon-docdeadline.png')); ?>" >
               <spam>Documents With Deadline</spam>
             </a>
         </div>

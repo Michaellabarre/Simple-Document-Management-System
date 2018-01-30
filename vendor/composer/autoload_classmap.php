@@ -11,6 +11,7 @@ return array(
     'CreateUsersTable' => $baseDir . '/database/migrations/2017_08_31_011524_CreateUsersTable.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'DepositTable' => $baseDir . '/database/migrations/2018_01_09_062833_DepositTable.php',
+    'DocumentTable' => $baseDir . '/database/migrations/2018_01_29_005008_Document_table.php',
     'EmployeesTable' => $baseDir . '/database/migrations/2017_08_25_055103_Employees_table.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',

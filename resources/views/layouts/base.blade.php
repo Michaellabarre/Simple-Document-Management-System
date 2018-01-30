@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>DMS</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <link  href="{{ asset('/theme/semantic.css')}}" rel="stylesheet">
-  <link  href="{{ asset('/theme/main.css')}}" rel="stylesheet">
-  <link  href="{{ asset('/theme/pace.css')}}" rel="stylesheet">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>DMS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link  href="{{ asset('/theme/semantic.css')}}" rel="stylesheet">
+    <link  href="{{ asset('/theme/main.css')}}" rel="stylesheet">
+    <link  href="{{ asset('/theme/pace.css')}}" rel="stylesheet">
+    <script type="text/javascript" src="{{ asset('/js/vue.js')}}"></script>
 </head>
 <body class="  pace-done">
   <div class="pace  pace-inactive">
@@ -38,7 +39,7 @@
                                 3 days ago
                             </div>
                             <div class="summary">
-                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
                             </div>
                         </div>
                     </div>
@@ -448,11 +449,40 @@
                 </div>
             </div><div class="mainWrap navslide">
             <div class="ui equal width left aligned padded grid stackable">
+                <div class="row" id="Document">
+                    <div class="sixteen wide column">
+                        @if (count($errors) > 0)
+                          <div class="ui error message">
+                            <i class="close icon"></i>
+                            <div class="header">
+                              There was some errors with your submission
+                            </div>
+                            <ul class="list">
+                              @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          </div>
+                        @endif
+
+                        @if(Session::has('message'))
+                          <div class="ui info message">
+                            <i class="close icon"></i>
+                            <div class="header">
+                              Horay
+                            </div>
+                            <ul class="list">
+                              <li>{{ Session::get('message') }}</li>
+                            </ul>
+                          </div>
+                        @endif
+                    </div>
+                </div>
+                @yield('content')
+
                 <!--Site Content-->
 
-            @yield('content')
-
-                    </div>
+            </div>
                   </div>
                 </div>
             <!--navbar-->
@@ -463,32 +493,31 @@
             </div>
     <!--jquery-->
     @yield('scripts')
-  <script   src="{{ asset('/theme/jquery-2.js')}}"></script>
-  <!--jquery-->
-  <!--semantic-->
-  <script   src="{{ asset('/theme/semantic.js')}}"></script>
-  <!--semantic-->
-  <script   src="{{ asset('/theme/js.js')}}"></script>
-  <script   src="{{ asset('/theme/jquery.js')}}"></script>
-  <script data-pace-options="{ &quot;ajax&quot;: false }"  src="{{ asset('/theme/pace.js')}}"></script>
+    <script   src="{{ asset('/theme/jquery-2.js')}}"></script>
+    <!--jquery-->
+    <!--semantic-->
+    <script   src="{{ asset('/theme/semantic.js')}}"></script>
+    <!--semantic-->
+    <script   src="{{ asset('/theme/js.js')}}"></script>
+    <script   src="{{ asset('/theme/jquery.js')}}"></script>
+    <script data-pace-options="{ &quot;ajax&quot;: false }"  src="{{ asset('/theme/pace.js')}}"></script>
 
-  <script   src="{{ asset('/theme/main.js')}}"></script>
+    <script   src="{{ asset('/theme/main.js')}}"></script>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
     $('.ui.dropdown').dropdown();
-    
+
     $('.message .close').on('click', function() {
       $(this).closest('.message').transition('fade');
     });
-  </script>
-  <div id="ascrail2001" class="nicescroll-rails nicescroll-rails-vr" style="width: 2px; z-index: 9999999; cursor: grab; position: fixed; top: 0px; left: 188px; height: 767px; display: block; opacity: 0;">
+    </script>
+    <div id="ascrail2001" class="nicescroll-rails nicescroll-rails-vr" style="width: 2px; z-index: 9999999; cursor: grab; position: fixed; top: 0px; left: 188px; height: 767px; display: block; opacity: 0;">
     <div style="position: relative; top: 0px; float: right; width: 2px; height: 657px; background-color: rgb(61, 59, 59); border: 0px none; background-clip: padding-box; border-radius: 0px;" class="nicescroll-cursors">
     </div>
-  </div>
-  <div id="ascrail2001-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 2px; z-index: 9999999; top: 765px; left: 0px; position: fixed; display: none; width: 171px; opacity: 0;">
+    </div>
+    <div id="ascrail2001-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 2px; z-index: 9999999; top: 765px; left: 0px; position: fixed; display: none; width: 171px; opacity: 0;">
     <div style="position: absolute; top: 0px; height: 2px; width: 173px; background-color: rgb(61, 59, 59); border: 0px none; background-clip: padding-box; border-radius: 0px;" class="nicescroll-cursors"></div>
-  </div>
-
+    </div>
 </body>
 </html>
 

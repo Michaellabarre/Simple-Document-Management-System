@@ -301,6 +301,7 @@ class ComposerStaticInita33f4b1966aa06c93276e1fbaca45de9
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_31_011524_CreateUsersTable.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DepositTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_09_062833_DepositTable.php',
+        'DocumentTable' => __DIR__ . '/../..' . '/database/migrations/2018_01_29_005008_Document_table.php',
         'EmployeesTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_25_055103_Employees_table.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
