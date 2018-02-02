@@ -594,7 +594,7 @@ class LaravelExcelWorksheet extends PHPExcel_Worksheet {
             $firstRow = reset($array);
 
             // Check if the array has array values
-            if (count($firstRow) != count($firstRow, 1))
+            if (is_array($firstRow) && count($firstRow) != count($firstRow, 1))
             {
                 // Loop through the data to remove arrays
                 $data = [];
@@ -626,6 +626,10 @@ class LaravelExcelWorksheet extends PHPExcel_Worksheet {
                     array_unshift($data, $tableHeading);
                 }
             }
+        }
+        else
+        {
+            $data = $array;
         }
 
         // Add results

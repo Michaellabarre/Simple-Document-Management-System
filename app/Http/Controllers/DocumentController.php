@@ -59,7 +59,7 @@ class DocumentController extends Controller
         //    echo (string)$file, "\n";
         // }     
 
-        return view('document.edit');
+        return view('document.show');
     }
 
 

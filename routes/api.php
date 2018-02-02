@@ -60,3 +60,4 @@ Route::group(['middleware' => 'roles','roles' => ['Admin']], function() {
 
 Route::resource('document', 'DocumentController');
 Route::resource('managelibraries/bureausandservices', 'BureauController');
+Route::resource('report', 'ReportController');

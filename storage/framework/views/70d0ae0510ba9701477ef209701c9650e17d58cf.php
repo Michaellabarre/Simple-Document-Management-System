@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
   	<div class="row">
         <div class="sixteen wide column">
-            <div class="ui segments">
+            <div class="ui segment">
                 <div class="ui segment">
                     <h3 class="ui header">
                         Show Document Number:00001
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui segments">
+            <div class="ui segment">
                 <form class="ui form segment form1">
                     <div class="two fields">
                         <div class="field">
@@ -85,9 +85,50 @@
                             <input placeholder="Remarks" name="username"  type="text"  readonly="">
                         </div>
                     </div>
-
                 </form>
+                  
             </div>
+            <div class="ui horizontal divider">
+                Documents
+            </div>
+            <div class="ui  segment">
+                <table class="ui celled small striped table">
+                    <thead>
+                    <tr>
+                        <th class="center aligned ten wide" >
+                          Document
+                        </th>
+                        <th  class="center aligned six wide" colspan="2">
+                            Action
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="collapsing">
+                            <i class="folder icon"></i> DOC 1
+                        </td>
+                        <td class="center aligned three wide">Download</td>
+                        <td class="center aligned three wide">View</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="ui styled fluid accordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i>
+                        Add Document
+                    </div>
+                    <div class="content">
+                       <form class="ui form segment form">
+                            <div class="field">
+                                <label>File:</label>
+                                <input type="file" name="import_file">
+                            </div>
+                            <button class="ui mini basic black button" type="submit">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>  
             <div class="ui horizontal divider">
                 Document Actions
             </div>
@@ -153,92 +194,94 @@
                     </form>
                 </div>
             </div>
-            <table class="ui celled small striped table">
-              <thead>
-                <tr>
-                <th>
-                  Attachement As New
-                </th>
-                <th>
-                    Action
-                </th>
-                <th>
-                    Person
-                </th>
-                <th>
-                    Position
-                </th>
-                <th>
-                    Unit
-                </th>
-                <th>
-                    Action By
-                </th>
-                <th>
-                    Date Created
-                </th>
-                <th>
-                    Remarks
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="collapsing">
-                    <i class="folder icon"></i> DOC 2
-                  </td>
-                    <td>For Signature</td>
-                    <td class="right aligned collapsing">HERMINIO A. ARIOLA</td>
-                    <td class="right aligned collapsing">Director</td>
-                    <td class="right aligned collapsing">ITMS</td>
-                    <td class="right aligned collapsing">User 1</td>
-                    <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                    <td class="right aligned collapsing">Sample Remark</td>
-                </tr>
+            <div class="ui segment">
+                <table class="ui celled small striped table">
+                  <thead>
+                    <tr>
+                    <th>
+                      Attachement As New
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                    <th>
+                        Person
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                    <th>
+                        Unit
+                    </th>
+                    <th>
+                        Action By
+                    </th>
+                    <th>
+                        Date Created
+                    </th>
+                    <th>
+                        Remarks
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="collapsing">
+                        <i class="folder icon"></i> DOC 2
+                      </td>
+                        <td>For Signature</td>
+                        <td class="right aligned collapsing">test1</td>
+                        <td class="right aligned collapsing">Director</td>
+                        <td class="right aligned collapsing">ITMS</td>
+                        <td class="right aligned collapsing">User 1</td>
+                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
+                        <td class="right aligned collapsing">Sample Remark</td>
+                    </tr>
 
-                <tr>
-                  <td class="collapsing">
-                    <i class="folder icon"></i> DOC 2
-                  </td>
-                    <td>For Signature</td>
-                    <td class="right aligned collapsing">HERMINIO A. ARIOLA</td>
-                    <td class="right aligned collapsing">Director</td>
-                    <td class="right aligned collapsing">ITMS</td>
-                    <td class="right aligned collapsing">User 1</td>
-                    <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                    <td class="right aligned collapsing">Sample Remark</td>
-                </tr>
-
-
-                <tr>
-                  <td class="collapsing">
-                    <i class="folder icon"></i> DOC 2
-                  </td>
-                    <td>For Signature</td>
-                    <td class="right aligned collapsing">HERMINIO A. ARIOLA</td>
-                    <td class="right aligned collapsing">Director</td>
-                    <td class="right aligned collapsing">ITMS</td>
-                    <td class="right aligned collapsing">User 1</td>
-                    <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                    <td class="right aligned collapsing">Sample Remark</td>
-                </tr>
+                    <tr>
+                      <td class="collapsing">
+                        <i class="folder icon"></i> DOC 2
+                      </td>
+                        <td>For Signature</td>
+                        <td class="right aligned collapsing">test2</td>
+                        <td class="right aligned collapsing">Director</td>
+                        <td class="right aligned collapsing">ITMS</td>
+                        <td class="right aligned collapsing">User 1</td>
+                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
+                        <td class="right aligned collapsing">Sample Remark</td>
+                    </tr>
 
 
-                <tr>
-                  <td class="collapsing">
-                    <i class="folder icon"></i> DOC 2
-                  </td>
-                    <td>For Signature</td>
-                    <td class="right aligned collapsing">HERMINIO A. ARIOLA</td>
-                    <td class="right aligned collapsing">Director</td>
-                    <td class="right aligned collapsing">ITMS</td>
-                    <td class="right aligned collapsing">User 1</td>
-                    <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                    <td class="right aligned collapsing">Sample Remark</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="ui horizontal divider">
+                    <tr>
+                      <td class="collapsing">
+                        <i class="folder icon"></i> DOC 2
+                      </td>
+                        <td>For Signature</td>
+                        <td class="right aligned collapsing">test3</td>
+                        <td class="right aligned collapsing">Director</td>
+                        <td class="right aligned collapsing">ITMS</td>
+                        <td class="right aligned collapsing">User 1</td>
+                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
+                        <td class="right aligned collapsing">Sample Remark</td>
+                    </tr>
+
+
+                    <tr>
+                      <td class="collapsing">
+                        <i class="folder icon"></i> DOC 2
+                      </td>
+                        <td>For Signature</td>
+                        <td class="right aligned collapsing">test4</td>
+                        <td class="right aligned collapsing">Director</td>
+                        <td class="right aligned collapsing">ITMS</td>
+                        <td class="right aligned collapsing">User 1</td>
+                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
+                        <td class="right aligned collapsing">Sample Remark</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+<!--             <div class="ui horizontal divider">
                 Document History
             </div>
              <div class="ui styled fluid accordion">
@@ -259,7 +302,7 @@
                         <a class="ui mini basic black button">Clear</a>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

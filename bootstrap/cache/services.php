@@ -29,6 +29,7 @@
     25 => 'App\\Providers\\EventServiceProvider',
     26 => 'App\\Providers\\RouteServiceProvider',
     27 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    28 => 'JasperPHP\\JasperPHPServiceProvider',
   ),
   'eager' => 
   array (
@@ -47,6 +48,7 @@
     12 => 'App\\Providers\\EventServiceProvider',
     13 => 'App\\Providers\\RouteServiceProvider',
     14 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    15 => 'JasperPHP\\JasperPHPServiceProvider',
   ),
   'deferred' => 
   array (
