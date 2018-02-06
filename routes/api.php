@@ -16,10 +16,7 @@ Route::get('/logout', [
     'as' => 'logout'
 ]);
 
-Route::get('/logout', [
-    'uses' => 'AuthController@getLogout',
-    'as' => 'logout'
-]);
+
 
 Route::group(['middleware' => 'roles','roles' => ['Admin','Accountingstaff']], function() {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -29,7 +26,6 @@ Route::group(['middleware' => 'roles','roles' => ['Admin','Accountingstaff']], f
     'as' => 'profile.update',
     'uses' => 'AuthController@updateprofile'
     ]);
-
 });
 
 Route::group(['middleware' => 'roles','roles' => ['Accountingstaff']], function() {
@@ -58,6 +54,8 @@ Route::group(['middleware' => 'roles','roles' => ['Admin']], function() {
     ]);
 });
 
+
+Route::post('document/adddoc/{id}', ['as' => 'document.adddoc', 'uses' => 'DocumentController@AddDocument']);
 Route::resource('document', 'DocumentController');
 Route::resource('managelibraries/bureausandservices', 'BureauController');
 Route::resource('report', 'ReportController');

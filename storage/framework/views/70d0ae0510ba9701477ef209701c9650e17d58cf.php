@@ -4,7 +4,7 @@
             <div class="ui segment">
                 <div class="ui segment">
                     <h3 class="ui header">
-                        Show Document Number:00001
+                        Show Document Number:.<span class="text-danger"><?php echo e(Auth::user()->first_name); ?></span>
                     </h3>
                 </div>
                 <div class="ui  segment">
@@ -28,61 +28,61 @@
                     <div class="two fields">
                         <div class="field">
                             <label>Document Type:</label>
-                            <input placeholder="Reference" name="username"  type="text" value="Memorandum" readonly=""> 
+                            <input placeholder="Reference" name="reference_number"  type="text"  readonly=""> 
                         </div>
                         <div class="field">
                             <label>Reference Number:</label>
-                            <input placeholder="Reference" name="username"  type="text" readonly="">                       
+                            <input placeholder="Reference" name="reference_number" type="text" value="<?php echo e($data['reference_number']); ?>" readonly="">                       
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
                             <label>Document Date:</label>
-                            <input placeholder="Document Date" name="username"  type="text" readonly="">
+                            <input placeholder="Document Date" name="doc_date"  type="text" readonly="" value="<?php echo e($data['doc_date']); ?>">
                         </div>
                         <div class="field">
                             <label>Document Received/Forwarded:</label>
-                            <input name="Document Received/Forwarded"  readonly="">
+                            <input name="Document Received/Forwarded"  readonly="" value="<?php echo e($data['doc_received']); ?>">
                         </div>
                     </div>
                      <div class="two fields">
                         <div class="field">
                             <label>Subject:</label>
-                            <textarea name="minLength" rows="2" readonly=""></textarea>
+                            <textarea  name="subject"  rows="2" readonly=""  value=""><?php echo e($data['Subject']); ?></textarea>
                         </div>
                         <div class="field">
                             <label>Document Status:</label>
-                            <input placeholder="Document Status" name="username"  type="text" readonly="">
+                            <input placeholder="Document Status"   type="text" readonly=""  value="<?php echo e($data['doc_status']); ?>">
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
                             <label>From/To:</label>
-                            <input placeholder="From/To" name="username"  type="text" readonly="">
+                            <input placeholder="From/To" type="text" readonly=""  value="<?php echo e($data['from_to']); ?>">
                         </div>
                         <div class="field">
                             <label>Designation:</label>
-                            <input placeholder="Designation" name="username"  type="text"  readonly="">
+                            <input placeholder="Designation"  type="text"  readonly=""  value="<?php echo e($data['designation']); ?>">
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
                             <label>Office:</label>
-                            <input placeholder="Office" name="username"  type="text"  readonly="">
+                            <input placeholder="Office"  type="text"  readonly=""  value="<?php echo e($data['office']); ?>">
                         </div>
                         <div class="field">
                             <label>Office Address:</label>
-                            <input placeholder="Office Address" name="username"  type="text"  readonly="">
+                            <input placeholder="Office Address" name="username"  type="text"  readonly=""  value="<?php echo e($data['office_address']); ?>">
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
                             <label>Deadline :</label>
-                            <input placeholder="Deadline" name="username"  type="text"  readonly="">
+                            <input placeholder="Deadline" name="username"  type="text"  readonly=""  value="<?php echo e($data['deadline']); ?>">
                         </div>
                         <div class="field">
                             <label>Remarks:</label>
-                            <input placeholder="Remarks" name="username"  type="text"  readonly="">
+                            <input placeholder="Remarks" name="username"  type="text"  readonly=""  value="<?php echo e($data['remarks']); ?>">
                         </div>
                     </div>
                 </form>
@@ -104,14 +104,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="collapsing">
-                            <i class="folder icon"></i> DOC 1
-                        </td>
-                        <td class="center aligned three wide">Download</td>
-                        <td class="center aligned three wide">View</td>
-                    </tr>
-                  </tbody>
+
+                        <?php $__currentLoopData = $files; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tr>
+                            <td>
+                                <?php echo e($file); ?>
+
+                            </td>
+                            <td class="center aligned three wide">Download</td>
+                            <td class="center aligned three wide">View</td>
+                        </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </tbody>
+
                 </table>
                 <div class="ui styled fluid accordion">
                     <div class="title">
@@ -119,10 +124,11 @@
                         Add Document
                     </div>
                     <div class="content">
-                       <form class="ui form segment form">
+                    <form action="<?php echo e(route('document.adddoc', [$data['id']])); ?>" class="ui mini form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                             <div class="field">
                                 <label>File:</label>
-                                <input type="file" name="import_file">
+                                <input type="file" name="import_file_add">
                             </div>
                             <button class="ui mini basic black button" type="submit">Add</button>
                         </form>
@@ -151,43 +157,40 @@
                             <div class="field">
                                 <div class="field">
                                     <label>Action:</label>
-                                    <div class="ui dropdown selection" tabindex="0">
-                                        <select name="gender">
-                                        </select>
-                                        <i class="dropdown icon"></i><div class="text">Forwarded</div><div class="menu transition hidden" tabindex="-1"><div class="item" data-value="male">Forwarded</div><div class="item active selected" data-value="female">Signed</div></div>
-                                    </div>
+                                    <select class="ui dropdown" name="action_id">
+                                      <option value="1">Forwarded</option>
+                                      <option value="2">Signed</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-
                         <div class="three fields">
                             <div class="field">
                                 <div class="field">
                                     <label>Unit:</label>
-                                    <div class="ui dropdown selection" tabindex="0">
-                                        <select name="gender">
-                                        </select>
-                                        <i class="dropdown icon"></i><div class="text">ITMS</div><div class="menu transition hidden" tabindex="-1"><div class="item" data-value="male">ITMS</div><div class="item active selected" data-value="female">ITD</div></div>
-                                    </div>
+                                    <select class="ui dropdown" name="unit_id">
+                                      <option value="1">ITMS</option>
+                                      <option value="2">ITD</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="field">
                                 <label>Person:</label>
-                                <input placeholder="Person" name="username"  type="text" readonly="">
+                                <input placeholder="Person" name="person"  type="text" >
                             </div>
                             <div class="field">
                                 <label>Position:</label>
-                                <input name="Position"  readonly="">
+                                <input name="position"  >
                             </div>
                         </div>
                          <div class="two fields">
                             <div class="field">
                                 <label>Date:</label>
-                                <input placeholder="Date" name="username"  type="text">
+                                <input  name="act_doc_date"  type="date">
                             </div>
                             <div class="field">
                                 <label>Remarks:</label>
-                                <input placeholder="Remarks" name="username"  type="text">
+                                <input placeholder="remarks" name="username"  type="text">
                             </div>
                         </div>
                         <button class="ui mini basic black button" type="submit">Add</button>
@@ -198,9 +201,7 @@
                 <table class="ui celled small striped table">
                   <thead>
                     <tr>
-                    <th>
-                      Attachement As New
-                    </th>
+
                     <th>
                         Action
                     </th>
@@ -226,9 +227,6 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="collapsing">
-                        <i class="folder icon"></i> DOC 2
-                      </td>
                         <td>For Signature</td>
                         <td class="right aligned collapsing">test1</td>
                         <td class="right aligned collapsing">Director</td>
@@ -239,9 +237,6 @@
                     </tr>
 
                     <tr>
-                      <td class="collapsing">
-                        <i class="folder icon"></i> DOC 2
-                      </td>
                         <td>For Signature</td>
                         <td class="right aligned collapsing">test2</td>
                         <td class="right aligned collapsing">Director</td>
@@ -253,9 +248,6 @@
 
 
                     <tr>
-                      <td class="collapsing">
-                        <i class="folder icon"></i> DOC 2
-                      </td>
                         <td>For Signature</td>
                         <td class="right aligned collapsing">test3</td>
                         <td class="right aligned collapsing">Director</td>
@@ -265,11 +257,7 @@
                         <td class="right aligned collapsing">Sample Remark</td>
                     </tr>
 
-
                     <tr>
-                      <td class="collapsing">
-                        <i class="folder icon"></i> DOC 2
-                      </td>
                         <td>For Signature</td>
                         <td class="right aligned collapsing">test4</td>
                         <td class="right aligned collapsing">Director</td>
@@ -281,31 +269,8 @@
                   </tbody>
                 </table>
             </div>
-<!--             <div class="ui horizontal divider">
-                Document History
-            </div>
-             <div class="ui styled fluid accordion">
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    Document History
-                </div>
-                <div class="content">
-                    <form  class="ui form" method="get">
-                        <div class="two fields">
-                            <div class="field">
-                                <label>Remarks:</label>
-                                <input type="text" placeholder="Search" name="search" >
-                            </div>
-
-                        </div>
-                        <button class="ui mini basic black button" type="submit">Filter</button>
-                        <a class="ui mini basic black button">Clear</a>
-                    </form>
-                </div>
-            </div> -->
         </div>
     </div>
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.base', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

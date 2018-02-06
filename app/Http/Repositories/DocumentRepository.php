@@ -10,11 +10,16 @@ use Validator;
 use App\Document;
 use Illuminate\Support\Facades\Storage;
 use File;
+use App\Action;
 
 class DocumentRepository extends CommonEloquent {
     
-    function __construct(Document $model) {
-        $this->model = $model;  
+    protected $model;
+    protected $actionmodel;
+
+    function __construct(Document $model,Action $actionmodel) {
+        $this->model = $model;
+        $this->actionmodel = $actionmodel;   
     }
 
     public function Documentindex()
@@ -29,12 +34,41 @@ class DocumentRepository extends CommonEloquent {
         $this->model->fill($request->except('import_file'));
         $this->model->save();
         if(Input::hasFile('import_file')){
-             $file = request()->file('import_file');
-             $extension = $file->getClientOriginalExtension();
-             Storage::disk('local')->put('itd/'.$this->model->id.'/'.'Doc_1'.'.'.$extension,  File::get($file));
+            $file = request()->file('import_file');
+            $extension = $file->getClientOriginalExtension();
+            Storage::disk('local')->put('itd/'.$this->model->id.'/'.'Doc_1'.'.'.$extension,  File::get($file));
         }
         return redirect('/document/'.$this->model->id);
+    }
+
+    public function ShowDocument($id)
+    {
+        $data = $this->getOne($id);
+        $directory  ='itd/'.$this->model->id.'/'.$id;
+        $files = Storage::allFiles($directory);
+        return view('document.show', compact('data','files'));
+    }
+
+    public function AddDocument($id,$request)
+    {
+        $this->Addfile($id,$request);
+        return back();
+    }
+
+    public function AddAction($id,$request){
 
     }
 
+    public function Addfile($id,$request)
+    {
+        if(Input::hasFile('import_file_add')){
+            $directory  ='itd/'.$id;
+            $files = Storage::allFiles($directory);
+            $filecount = count($files)+1;
+            $file = request()->file('import_file_add');
+            $extension = $file->getClientOriginalExtension();
+            Storage::disk('local')->put('itd/'.$id.'/'.'Doc_'.$filecount.'.'.$extension,  File::get($file));
+        }
+
+    }
 }       

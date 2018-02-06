@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use App\Item;
 use DB;
@@ -50,19 +52,24 @@ class DocumentController extends Controller
 
     public function show($id)
     {
-        // $filecount = count($files) ;
-        // echo (string)$filecount;
-        $directory  ='itd/'.$this->model->id.'/'.$id;
-        $files = Storage::allFiles($directory);
-        // foreach ($files as $file)
-        // {
-        //    echo (string)$file, "\n";
-        // }     
-
-        return view('document.show');
+        // $user = Auth::user()->first_name;
+        // $id = Auth::id();
+        //return var_dump($id);
+        return $this->DocumentRepository->ShowDocument($id);
     }
 
+    public function AddDocument(Request $request,$id)
+    {
+    
+        return $this->DocumentRepository->AddDocument($id,$request);
 
+    }
+
+    public function AddAction(Request $request,$id)
+    {
+    
+        return $this->DocumentRepository->AddAction($id,$request);
+    }
 
     public function searchDeposit(Request $request)
     {
