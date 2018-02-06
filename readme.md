@@ -1,6 +1,6 @@
 
 ## About Simple Document Management System
-Laravel Repository for beginners
+I want to increase my knowledge in laravel so I created this simple Document Management System.
 
 ## Sample User
 
