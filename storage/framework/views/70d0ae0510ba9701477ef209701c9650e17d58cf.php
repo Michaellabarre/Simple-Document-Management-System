@@ -104,16 +104,15 @@
                     </tr>
                     </thead>
                     <tbody>
-
                         <?php $__currentLoopData = $files; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <tr>
-                            <td>
-                                <?php echo e($file); ?>
+                            <tr>
+                                <td>
+                                    <?php echo e($file); ?>
 
-                            </td>
-                            <td class="center aligned three wide">Download</td>
-                            <td class="center aligned three wide">View</td>
-                        </tr>
+                                </td>
+                                <td class="center aligned three wide">Download</td>
+                                <td class="center aligned three wide">View</td>
+                            </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
 
@@ -144,15 +143,13 @@
                     Add Action
                 </div>
                 <div class="content">
-                   <form class="ui form segment form">
-                        <div class="field">
-                            <label>As a New Document</label>
-                            <input type="checkbox" placeholder="Reference" name="username"  type="text" value="Memorandum" > 
-                        </div>
+                    <form action="<?php echo e(route('document.add_action_doc', [$data['id']])); ?>" class="ui mini form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+
                         <div class="two fields">
                             <div class="field">
                                 <label>File:</label>
-                                <input type="file" name="import_file" value="<?php echo e(old('import_file')); ?>" / >
+                                <input type="file" name="import_file_add" value="<?php echo e(old('import_file_add')); ?>" / >
                             </div>
                             <div class="field">
                                 <div class="field">
@@ -168,7 +165,7 @@
                             <div class="field">
                                 <div class="field">
                                     <label>Unit:</label>
-                                    <select class="ui dropdown" name="unit_id">
+                                    <select id="unit_id" name="unit_id" class="ui dropdown" >
                                       <option value="1">ITMS</option>
                                       <option value="2">ITD</option>
                                     </select>
@@ -190,9 +187,10 @@
                             </div>
                             <div class="field">
                                 <label>Remarks:</label>
-                                <input placeholder="remarks" name="username"  type="text">
+                                <input placeholder="remarks" name="remarks"  type="text">
                             </div>
                         </div>
+                        <input type="hidden" id="unit" name="unit" value="">
                         <button class="ui mini basic black button" type="submit">Add</button>
                     </form>
                 </div>
@@ -201,7 +199,6 @@
                 <table class="ui celled small striped table">
                   <thead>
                     <tr>
-
                     <th>
                         Action
                     </th>
@@ -226,46 +223,38 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                        <td>For Signature</td>
-                        <td class="right aligned collapsing">test1</td>
-                        <td class="right aligned collapsing">Director</td>
-                        <td class="right aligned collapsing">ITMS</td>
-                        <td class="right aligned collapsing">User 1</td>
-                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                        <td class="right aligned collapsing">Sample Remark</td>
-                    </tr>
+                    <?php $__currentLoopData = $data->action; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $act): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tr>
+                            <td>
+                                <?php echo e($act->action_id); ?>
 
-                    <tr>
-                        <td>For Signature</td>
-                        <td class="right aligned collapsing">test2</td>
-                        <td class="right aligned collapsing">Director</td>
-                        <td class="right aligned collapsing">ITMS</td>
-                        <td class="right aligned collapsing">User 1</td>
-                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                        <td class="right aligned collapsing">Sample Remark</td>
-                    </tr>
+                            </td>
+                            <td>
+                                <?php echo e($act->person); ?>
 
+                            </td>
+                            <td>
+                                <?php echo e($act->position); ?>
 
-                    <tr>
-                        <td>For Signature</td>
-                        <td class="right aligned collapsing">test3</td>
-                        <td class="right aligned collapsing">Director</td>
-                        <td class="right aligned collapsing">ITMS</td>
-                        <td class="right aligned collapsing">User 1</td>
-                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                        <td class="right aligned collapsing">Sample Remark</td>
-                    </tr>
+                            </td>
+                            <td>
+                                <?php echo e($act->unit); ?>
 
-                    <tr>
-                        <td>For Signature</td>
-                        <td class="right aligned collapsing">test4</td>
-                        <td class="right aligned collapsing">Director</td>
-                        <td class="right aligned collapsing">ITMS</td>
-                        <td class="right aligned collapsing">User 1</td>
-                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                        <td class="right aligned collapsing">Sample Remark</td>
-                    </tr>
+                            </td>
+                            <td>
+                                <?php echo e($act->created_by); ?>
+
+                            </td>
+                            <td>
+                                <?php echo e($act->created_at); ?>
+
+                            </td>
+                            <td>
+                                <?php echo e($act->remarks); ?>
+
+                            </td>   
+                        </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
             </div>
@@ -273,4 +262,15 @@
     </div>
 <?php $__env->stopSection(); ?>
 
+
+<?php $__env->startSection('scripts'); ?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#unit").val($( "#unit_id option:selected").text());
+            $("#unit_id").change(function(){
+                $("#unit").val($( "#unit_id option:selected").text());
+            });
+        });
+    </script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.base', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

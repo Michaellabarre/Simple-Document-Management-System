@@ -1,15 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
-use App\Item;
+use App\Action;
 use DB;
 use App\Document;
-use App\Payrolltype;
 use App\Http\Repositories\DocumentRepository;
 use Validator;
-use Request as Req;
 use App\Http\Requests\Document\DocumentCreateValidation;
 use Illuminate\Support\Facades\Storage;
 

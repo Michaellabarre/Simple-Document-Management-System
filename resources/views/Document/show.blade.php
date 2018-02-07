@@ -105,15 +105,14 @@
                     </tr>
                     </thead>
                     <tbody>
-
                         @foreach($files as $file)
-                        <tr>
-                            <td>
-                                {{ $file }}
-                            </td>
-                            <td class="center aligned three wide">Download</td>
-                            <td class="center aligned three wide">View</td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    {{ $file }}
+                                </td>
+                                <td class="center aligned three wide">Download</td>
+                                <td class="center aligned three wide">View</td>
+                            </tr>
                         @endforeach
                     </tbody>
 
@@ -144,15 +143,13 @@
                     Add Action
                 </div>
                 <div class="content">
-                   <form class="ui form segment form">
-                        <div class="field">
-                            <label>As a New Document</label>
-                            <input type="checkbox" placeholder="Reference" name="username"  type="text" value="Memorandum" > 
-                        </div>
+                    <form action="{{ route('document.add_action_doc', [$data['id']]) }}" class="ui mini form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                         <div class="two fields">
                             <div class="field">
                                 <label>File:</label>
-                                <input type="file" name="import_file" value="{{ old('import_file') }}" / >
+                                <input type="file" name="import_file_add" value="{{ old('import_file_add') }}" / >
                             </div>
                             <div class="field">
                                 <div class="field">
@@ -168,7 +165,7 @@
                             <div class="field">
                                 <div class="field">
                                     <label>Unit:</label>
-                                    <select class="ui dropdown" name="unit_id">
+                                    <select id="unit_id" name="unit_id" class="ui dropdown" >
                                       <option value="1">ITMS</option>
                                       <option value="2">ITD</option>
                                     </select>
@@ -190,9 +187,10 @@
                             </div>
                             <div class="field">
                                 <label>Remarks:</label>
-                                <input placeholder="remarks" name="username"  type="text">
+                                <input placeholder="remarks" name="remarks"  type="text">
                             </div>
                         </div>
+                        <input type="hidden" id="unit" name="unit" value="">
                         <button class="ui mini basic black button" type="submit">Add</button>
                     </form>
                 </div>
@@ -201,7 +199,6 @@
                 <table class="ui celled small striped table">
                   <thead>
                     <tr>
-
                     <th>
                         Action
                     </th>
@@ -226,49 +223,46 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                        <td>For Signature</td>
-                        <td class="right aligned collapsing">test1</td>
-                        <td class="right aligned collapsing">Director</td>
-                        <td class="right aligned collapsing">ITMS</td>
-                        <td class="right aligned collapsing">User 1</td>
-                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                        <td class="right aligned collapsing">Sample Remark</td>
-                    </tr>
-
-                    <tr>
-                        <td>For Signature</td>
-                        <td class="right aligned collapsing">test2</td>
-                        <td class="right aligned collapsing">Director</td>
-                        <td class="right aligned collapsing">ITMS</td>
-                        <td class="right aligned collapsing">User 1</td>
-                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                        <td class="right aligned collapsing">Sample Remark</td>
-                    </tr>
-
-
-                    <tr>
-                        <td>For Signature</td>
-                        <td class="right aligned collapsing">test3</td>
-                        <td class="right aligned collapsing">Director</td>
-                        <td class="right aligned collapsing">ITMS</td>
-                        <td class="right aligned collapsing">User 1</td>
-                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                        <td class="right aligned collapsing">Sample Remark</td>
-                    </tr>
-
-                    <tr>
-                        <td>For Signature</td>
-                        <td class="right aligned collapsing">test4</td>
-                        <td class="right aligned collapsing">Director</td>
-                        <td class="right aligned collapsing">ITMS</td>
-                        <td class="right aligned collapsing">User 1</td>
-                        <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                        <td class="right aligned collapsing">Sample Remark</td>
-                    </tr>
+                    @foreach($data->action as $act)
+                        <tr>
+                            <td>
+                                {{ $act->action_id }}
+                            </td>
+                            <td>
+                                {{ $act->person }}
+                            </td>
+                            <td>
+                                {{ $act->position }}
+                            </td>
+                            <td>
+                                {{ $act->unit }}
+                            </td>
+                            <td>
+                                {{ $act->created_by }}
+                            </td>
+                            <td>
+                                {{ $act->created_at }}
+                            </td>
+                            <td>
+                                {{ $act->remarks }}
+                            </td>   
+                        </tr>
+                    @endforeach
                   </tbody>
                 </table>
             </div>
         </div>
     </div>
+@stop
+
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#unit").val($( "#unit_id option:selected").text());
+            $("#unit_id").change(function(){
+                $("#unit").val($( "#unit_id option:selected").text());
+            });
+        });
+    </script>
 @stop

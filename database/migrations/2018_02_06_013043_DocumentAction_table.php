@@ -17,6 +17,8 @@ class DocumentActionTable extends Migration
 
             $table->increments('id');
 
+            $table->integer('document_id')->nullable();
+
             $table->integer('action_id')->nullable();
 
             $table->integer('unit_id')->nullable();

@@ -43,9 +43,11 @@ class DocumentRepository extends CommonEloquent {
 
     public function ShowDocument($id)
     {
-        $data = $this->getOne($id);
+      
+        $data = $this->model->with('action')->findOrFail($id);
         $directory  ='itd/'.$this->model->id.'/'.$id;
         $files = Storage::allFiles($directory);
+
         return view('document.show', compact('data','files'));
     }
 
@@ -55,8 +57,14 @@ class DocumentRepository extends CommonEloquent {
         return back();
     }
 
-    public function AddAction($id,$request){
-
+    public function AddAction($id,$request)
+    {
+        $data = $request->except('import_file_add');
+        $this->actionmodel->fill($request->except($data));
+        $this->actionmodel->document_id = $id;
+        $this->actionmodel->save();
+        $this->Addfile($id,$request);
+        return back();
     }
 
     public function Addfile($id,$request)

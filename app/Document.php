@@ -7,7 +7,7 @@ class Document extends Model
    protected $table = 'tbl_document';
    protected $guarded = [];
    
-   public function Document()
+   public function Action()
    {
         return $this->hasMany(Action::class);
    }

@@ -56,6 +56,7 @@ Route::group(['middleware' => 'roles','roles' => ['Admin']], function() {
 
 
 Route::post('document/adddoc/{id}', ['as' => 'document.adddoc', 'uses' => 'DocumentController@AddDocument']);
+Route::post('document/addaction/{id}', ['as' => 'document.add_action_doc', 'uses' => 'DocumentController@AddAction']);
 Route::resource('document', 'DocumentController');
 Route::resource('managelibraries/bureausandservices', 'BureauController');
 Route::resource('report', 'ReportController');
