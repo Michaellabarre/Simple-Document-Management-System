@@ -51,6 +51,6 @@
 @stop
 @section('scripts')
 	<script type="text/javascript">
-		$('.ui.dropdown').dropdown().dropdown("set selected", "{{ old('isactive') }}");;
+		$('.ui.dropdown').dropdown().dropdown("set selected", "{{ old('isactive') }}");
 	</script>
 @stop

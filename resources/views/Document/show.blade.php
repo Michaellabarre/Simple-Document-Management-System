@@ -49,7 +49,7 @@
                      <div class="two fields">
                         <div class="field">
                             <label>Subject:</label>
-                            <textarea  name="subject"  rows="2" readonly=""  value="">{{ $data['Subject']}}</textarea>
+                            <textarea  name="subject"  rows="2" readonly="" >{{ $data['Subject'] }}</textarea>
                         </div>
                         <div class="field">
                             <label>Document Status:</label>

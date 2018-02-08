@@ -24,9 +24,9 @@ class DocumentRepository extends CommonEloquent {
 
     public function Documentindex()
     {
-        $Payrolltypes = Payrolltype::select('payrolltype', 'id')->get();
+        
         $data = $this->model->orderBy('id', 'desc')->paginate(10);
-        return view('payroll.list', compact('data','Payrolltypes'));
+        return view('payroll.list', compact('data'));
     }
 
     public function CreateDocument($request)

@@ -23,7 +23,7 @@ class DocumentController extends Controller
 
     public function index()
     {
-       return view('document.create');
+       return $this->DocumentRepository->Documentindex();
     }
 
     public function create()
@@ -38,33 +38,28 @@ class DocumentController extends Controller
 
     public function update(Request $request, $id)
     {
-        return $this->DepositeRepository->UpdateDeposit($id,$request);
+        $this->DocumentRepository->update($id,$request->all());
+        return $this->show($id);
     }
 
     public function edit($id)
     {
-        
-        return view('document.edit');
+        return vieW('document.edit')->with('data', $this->DocumentRepository->getOne($id));
     }
 
     public function show($id)
     {
-        // $user = Auth::user()->first_name;
-        // $id = Auth::id();
-        //return var_dump($id);
         return $this->DocumentRepository->ShowDocument($id);
     }
 
     public function AddDocument(Request $request,$id)
     {
-    
-        return $this->DocumentRepository->AddDocument($id,$request);
-
+        $this->DocumentRepository->AddDocument($id,$request);
+        return redirect('/document/'.$id);
     }
 
     public function AddAction(Request $request,$id)
     {
-    
         return $this->DocumentRepository->AddAction($id,$request);
     }
 

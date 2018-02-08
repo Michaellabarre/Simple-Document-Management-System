@@ -41,3 +41,7 @@ class AppController extends Controller
         return redirect()->back();
     }
 }
+
+        // $user = Auth::user()->first_name;
+        // $id = Auth::id();
+        //return var_dump($id);

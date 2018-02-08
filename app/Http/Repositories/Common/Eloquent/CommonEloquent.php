@@ -24,7 +24,7 @@ class CommonEloquent
     public function update($id, $attr = [])
     {
         $model = $this->model->findOrFail($id);
-        $model->fill(filter_var_array($attr,FILTER_SANITIZE_STRING));
+        $model->fill($attr);
         $model->save();
     }
 
@@ -35,7 +35,7 @@ class CommonEloquent
     public function save($attr = [])
     {
         $model = new $this->model;
-        $model->fill(filter_var_array($attr,FILTER_SANITIZE_STRING));
+        $model->fill($attr);
         $model->save();
         return $model;
     }

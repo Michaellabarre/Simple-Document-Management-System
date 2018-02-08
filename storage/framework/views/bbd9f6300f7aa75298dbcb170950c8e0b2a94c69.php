@@ -1,268 +1,94 @@
 <?php $__env->startSection('content'); ?>
-  	<div class="row">
+    <div class="row" id="Document">
         <div class="sixteen wide column">
             <div class="ui segments">
                 <div class="ui segment">
-                    <h3 class="ui header">
-                        Document Number:00001
-                    </h3>
+                    <h5 class="ui header">
+                        Edit Document<span></span>
+                    </h5>
                 </div>
-                <div class="ui  segment">
-                    <div class="ui basic black button"><i class="pencil icon"></i>Edit Document</div>
-                    <div class="ui basic black button"><i class="bookmark icon"></i>Bookmark this Document</div>
-                    <div class="ui basic black button"><i class="file icon"></i>Create Memo</div>
-                    <div class="ui basic black button"><i class="file icon"></i>Create Acknowledgement</div>
-                    <div class="ui dropdown item">
-                        <b>Print Tracking Slip:</b>
-                        <div class="menu ">
-                          <a class="item">With Action(s)</a>
-                          <a class="item">Without Action(s) Whole Page</a>
-                          <a class="item">Without Action(s) Half Page</a>
-                        </div>
-                         <i class="dropdown icon"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="ui segments">
-                <form class="ui form segment form1">
-                    <div class="two fields">
-                        <div class="field">
-                            <label>Document Type:</label>
-                            <input placeholder="Reference" name="username"  type="text" value="Memorandum" readonly=""> 
-                        </div>
-                        <div class="field">
-                            <label>Reference Number:</label>
-                            <input placeholder="Reference" name="username"  type="text" readonly="">                       
-                        </div>
-                    </div>
-                    <div class="two fields">
-                        <div class="field">
-                            <label>Document Date:</label>
-                            <input placeholder="Document Date" name="username"  type="text" readonly="">
-                        </div>
-                        <div class="field">
-                            <label>Document Received/Forwarded:</label>
-                            <input name="Document Received/Forwarded"  readonly="">
-                        </div>
-                    </div>
-                     <div class="two fields">
-                        <div class="field">
-                            <label>Subject:</label>
-                            <textarea name="minLength" rows="2" readonly=""></textarea>
-                        </div>
-                        <div class="field">
-                            <label>Document Status:</label>
-                            <input placeholder="Document Status" name="username"  type="text" readonly="">
-                        </div>
-                    </div>
-                    <div class="two fields">
-                        <div class="field">
-                            <label>From/To:</label>
-                            <input placeholder="From/To" name="username"  type="text" readonly="">
-                        </div>
-                        <div class="field">
-                            <label>Designation:</label>
-                            <input placeholder="Designation" name="username"  type="text"  readonly="">
-                        </div>
-                    </div>
-                    <div class="two fields">
-                        <div class="field">
-                            <label>Office:</label>
-                            <input placeholder="Office" name="username"  type="text"  readonly="">
-                        </div>
-                        <div class="field">
-                            <label>Office Address:</label>
-                            <input placeholder="Office Address" name="username"  type="text"  readonly="">
-                        </div>
-                    </div>
-                    <div class="two fields">
-                        <div class="field">
-                            <label>Deadline :</label>
-                            <input placeholder="Deadline" name="username"  type="text"  readonly="">
-                        </div>
-                        <div class="field">
-                            <label>Remarks:</label>
-                            <input placeholder="Remarks" name="username"  type="text"  readonly="">
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-            <div class="ui horizontal divider">
-                Document Actions
-            </div>
-            <div class="ui styled fluid accordion">
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    Add Action
-                </div>
-                <div class="content">
-                   <form class="ui form segment form">
-                        <div class="field">
-                            <label>As a New Document</label>
-                            <input type="checkbox" placeholder="Reference" name="username"  type="text" value="Memorandum" > 
+                <div class="ui segment">              
+                    <form action="<?php echo e(route('document.update', [$data['id']])); ?>" class="ui mini form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                        <input type="hidden" name="_method" value="PUT">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Document Type:</label>
+                                <select id="doctype_id" class="ui dropdown" name="doctype_id">
+                                  <option value="1">Memorandum</option>
+                                  <option value="2">Letter</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Reference Number:</label>
+                                <input placeholder="Reference" name="reference_number"  type="text"  value="<?php echo e($data['reference_number']); ?>">                       
+                            </div>
                         </div>
                         <div class="two fields">
                             <div class="field">
-                                <label>File:</label>
-                                <input type="file" name="import_file" value="<?php echo e(old('import_file')); ?>" / >
+                                <label>Document Date:</label>
+                                <input name="doc_date" id="doc_date" type="date" value="<?php echo e(date_format(date_create($data['doc_date']),"Y-m-d")); ?>" >
                             </div>
-                            <div class="field">
-                                <div class="field">
-                                    <label>Action:</label>
-                                    <div class="ui dropdown selection" tabindex="0">
-                                        <select name="gender">
-                                        </select>
-                                        <i class="dropdown icon"></i><div class="text">Forwarded</div><div class="menu transition hidden" tabindex="-1"><div class="item" data-value="male">Forwarded</div><div class="item active selected" data-value="female">Signed</div></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="three fields">
                             <div class="field">
-                                <div class="field">
-                                    <label>Unit:</label>
-                                    <div class="ui dropdown selection" tabindex="0">
-                                        <select name="gender">
-                                        </select>
-                                        <i class="dropdown icon"></i><div class="text">ITMS</div><div class="menu transition hidden" tabindex="-1"><div class="item" data-value="male">ITMS</div><div class="item active selected" data-value="female">ITD</div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Person:</label>
-                                <input placeholder="Person" name="username"  type="text" readonly="">
-                            </div>
-                            <div class="field">
-                                <label>Position:</label>
-                                <input name="Position"  readonly="">
-                            </div>
+                                <label>Document Received/Forwarded:</label>
+                                <input name="doc_received"  type="date"  value=" <?php echo e(date_format(date_create($data['doc_received']),"Y-m-d")); ?>">
+                            </div>                        
                         </div>
                          <div class="two fields">
                             <div class="field">
-                                <label>Date:</label>
-                                <input placeholder="Date" name="username"  type="text">
+                                <label>Subject:</label>
+                                <textarea name="subject" rows="2" placeholder="Subject" ><?php echo e($data['Subject']); ?></textarea>
                             </div>
                             <div class="field">
-                                <label>Remarks:</label>
-                                <input placeholder="Remarks" name="username"  type="text">
+                                <label>Document Status:</label>
+                                <input placeholder="Document Status" name="doc_status"  type="text" value="<?php echo e($data['doc_status']); ?>">
                             </div>
                         </div>
-                        <button class="ui mini basic black button" type="submit">Add</button>
-                    </form>
-                </div>
-            </div>
-            <table class="ui celled small striped table">
-              <thead>
-                <tr>
-                <th>
-                  Attachement As New
-                </th>
-                <th>
-                    Action
-                </th>
-                <th>
-                    Person
-                </th>
-                <th>
-                    Position
-                </th>
-                <th>
-                    Unit
-                </th>
-                <th>
-                    Action By
-                </th>
-                <th>
-                    Date Created
-                </th>
-                <th>
-                    Remarks
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="collapsing">
-                    <i class="folder icon"></i> DOC 2
-                  </td>
-                    <td>For Signature</td>
-                    <td class="right aligned collapsing">HERMINIO A. ARIOLA</td>
-                    <td class="right aligned collapsing">Director</td>
-                    <td class="right aligned collapsing">ITMS</td>
-                    <td class="right aligned collapsing">User 1</td>
-                    <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                    <td class="right aligned collapsing">Sample Remark</td>
-                </tr>
-
-                <tr>
-                  <td class="collapsing">
-                    <i class="folder icon"></i> DOC 2
-                  </td>
-                    <td>For Signature</td>
-                    <td class="right aligned collapsing">HERMINIO A. ARIOLA</td>
-                    <td class="right aligned collapsing">Director</td>
-                    <td class="right aligned collapsing">ITMS</td>
-                    <td class="right aligned collapsing">User 1</td>
-                    <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                    <td class="right aligned collapsing">Sample Remark</td>
-                </tr>
-
-
-                <tr>
-                  <td class="collapsing">
-                    <i class="folder icon"></i> DOC 2
-                  </td>
-                    <td>For Signature</td>
-                    <td class="right aligned collapsing">HERMINIO A. ARIOLA</td>
-                    <td class="right aligned collapsing">Director</td>
-                    <td class="right aligned collapsing">ITMS</td>
-                    <td class="right aligned collapsing">User 1</td>
-                    <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                    <td class="right aligned collapsing">Sample Remark</td>
-                </tr>
-
-
-                <tr>
-                  <td class="collapsing">
-                    <i class="folder icon"></i> DOC 2
-                  </td>
-                    <td>For Signature</td>
-                    <td class="right aligned collapsing">HERMINIO A. ARIOLA</td>
-                    <td class="right aligned collapsing">Director</td>
-                    <td class="right aligned collapsing">ITMS</td>
-                    <td class="right aligned collapsing">User 1</td>
-                    <td class="right aligned collapsing">April 17, 2017 10:03 AM</td>
-                    <td class="right aligned collapsing">Sample Remark</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="ui horizontal divider">
-                Document History
-            </div>
-             <div class="ui styled fluid accordion">
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    Document History
-                </div>
-                <div class="content">
-                    <form  class="ui form" method="get">
                         <div class="two fields">
                             <div class="field">
-                                <label>Remarks:</label>
-                                <input type="text" placeholder="Search" name="search" >
+                                <label>From/To:</label>
+                                <input placeholder="From/To" name="from_to"  type="text" value="<?php echo e($data['from_to']); ?>">
                             </div>
-
+                            <div class="field">
+                                <label>Designation:</label>
+                                <input placeholder="Designation" name="designation"  type="text" value="<?php echo e($data['designation']); ?>">
+                            </div>
                         </div>
-                        <button class="ui mini basic black button" type="submit">Filter</button>
-                        <a class="ui mini basic black button">Clear</a>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Office :</label>
+                                <input placeholder="Office" name="office"  type="text" value="<?php echo e($data['office']); ?>">
+                            </div>
+                            <div class="field">
+                                <label>Office Address:</label>
+                                <input placeholder="Office Address" name="office_address"  type="text" value="<?php echo e($data['office_address']); ?>">
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Deadline :</label>
+                                <input name="deadline"  type="date"  value=" <?php echo e(date_format(date_create($data['deadline']),"Y-m-d")); ?>">
+                            </div>
+                            <div class="field">
+                                <label>Remarks:</label>
+                                <input placeholder="Remarks" name="remarks"  type="text" value="<?php echo e($data['remarks']); ?>">
+                            </div>
+                        </div>
+                        <button class="ui  basic black button" type="submit"> <i class="save icon"></i>Save Document</button>
+                        <div class="ui basic black submit button"><i class="cancel icon"></i>Cancel</div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 <?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts'); ?>
+    <script type="text/javascript">
+        $('#doctype_id').dropdown('set selected',"<?php echo e($data['doctype_id']); ?>");
+    </script>
+    <script type="text/javascript" src="<?php echo e(asset('/js/controller/documentcontroller.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
 
 <?php echo $__env->make('layouts.base', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
