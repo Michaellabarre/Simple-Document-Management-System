@@ -1,6 +1,6 @@
 
 ## About Simple Document Management System
-I want to increase my knowledge in laravel so I created this Simple Document Management System.
+Simple Document Management System
 
 ## Sample User
 
